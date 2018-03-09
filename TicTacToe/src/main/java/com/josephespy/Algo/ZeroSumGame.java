@@ -6,16 +6,20 @@ package com.josephespy.Algo;
 */
 
 import java.util.HashSet;
+import java.util.Stack;
 
 public interface ZeroSumGame {
 
-    // 1 is a sure win for the moving player, -1 is a sure loss for the moving player, 0 is no advantage
-    float heuristicObjective();
+    // 1 is a sure win for the player, -1 is a sure loss for the moving, 0 is no advantage
+    long heuristicObjective(int player);
 
     // a parallelizable string of moves that moving player could legally make
-    HashSet<String> getMoveSet();
+    Stack<String> getMoveSet();
 
     // Game that results from a legal move on the current game, returned game has different moving player as current
     ZeroSumGame apply(String move);
+
+    // returns that player whose turn it is to move next, identified by a unique index
+    int getPlayer();
 
 }

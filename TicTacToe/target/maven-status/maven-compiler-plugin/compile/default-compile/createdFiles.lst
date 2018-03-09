@@ -1,5 +1,5 @@
 com/josephespy/Algo/App.class
 com/josephespy/Algo/TicTacToe.class
 com/josephespy/Algo/ZeroSumGame.class
-com/josephespy/Algo/MinimaxRet.class
 com/josephespy/Algo/Minimax.class
+com/josephespy/Algo/VirtualGame.class

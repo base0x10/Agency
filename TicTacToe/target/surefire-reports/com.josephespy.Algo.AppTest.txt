@@ -1,4 +1,13 @@
 -------------------------------------------------------------------------------
 Test set: com.josephespy.Algo.AppTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.018 sec
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.006 sec <<< FAILURE!
+testApp(com.josephespy.Algo.AppTest)  Time elapsed: 0.004 sec  <<< ERROR!
+java.lang.AssertionError
+	at com.josephespy.Algo.TicTacToe.apply(TicTacToe.java:260)
+	at com.josephespy.Algo.TicTacToe.apply(TicTacToe.java:6)
+	at com.josephespy.Algo.VirtualGame.<init>(VirtualGame.java:35)
+	at com.josephespy.Algo.VirtualGame.getChild(VirtualGame.java:78)
+	at com.josephespy.Algo.Minimax.miniMax(Minimax.java:19)
+	at com.josephespy.Algo.AppTest.testApp(AppTest.java:40)
+

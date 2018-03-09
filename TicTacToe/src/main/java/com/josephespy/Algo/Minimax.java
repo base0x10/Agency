@@ -1,26 +1,33 @@
 package com.josephespy.Algo;
 
-import java.util.HashSet;
-import java.util.Stack;
-import java.util.stream.Collectors;
-
 public class Minimax {
 
-    public MinimaxRet miniMax(ZeroSumGame board, int depth, Stack<String> moveStack) {
+    // a non-recursive minimax implementation
+    // board is a current state, not some future possible state (no recursion needed)
+    // depth is number of rational moves (not number of move cycles) to go
+    public static String miniMax(ZeroSumGame board, int maxDepth) {
 
-        HashSet<String> moveSet= board.getMoveSet();
+        VirtualGame cur = new VirtualGame(board);
 
-        if (moveSet.size() == 0) {
-
+        while (cur.hasChild() || cur.parent != null) {
+            // move up the tree when out of moves
+            if (cur.depth == maxDepth || (!cur.hasChild() && cur.getBestGame() == null)) {
+                assert(cur.game != null);
+                cur.parent.reportGame(cur.move, cur.game);
+                cur = cur.parent;
+                continue;
+            } else if (!cur.hasChild()) {
+                assert(cur.getBestGame() != null);
+                cur.parent.reportGame(cur.move, cur.getBestGame());
+                cur = cur.parent;
+                continue;
+            }
+            cur = cur.getChild();
         }
 
-        moveSet.parallelStream()
-                // todo implement stack of past moves
-                .map(m -> miniMax(board.apply(m), depth - 1, (Stack) null))
-                .collect(Collectors.toCollection(HashSet::new));
-
-        // todo use MinimaxRet type
-        return null;
+        assert(cur.bestMove != null);
+        // cur is root board now
+        return cur.bestMove;
     }
 
 }
